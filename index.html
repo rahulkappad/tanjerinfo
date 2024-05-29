@@ -177,7 +177,7 @@
             <button class="location-button" onclick="showSearchBox(this, 'Location2')">UAE</button>
 			<button class="location-button" onclick="showSearchBox(this, 'Location3')">Saudi</button>
             <button class="location-button" onclick="showSearchBox(this, 'Location4')">Oman</button>
-			<button class="location-button" onclick="showSearchBox(this, 'Location')">Test</button>
+			<button class="location-button" onclick="showSearchBox(this, 'Location5')">Test</button>
         </div>
         <div class="search-container toggle-search" id="search-container">
             <input type="text" id="client-search" placeholder="Search for a client..." onkeyup="searchClients(this.value)">
@@ -214,13 +214,60 @@
 							{ name: 'Test/28', url: 'http://192.168.10.28:8088/heartbeat' },
 							{ name: 'Test/8088', url: 'http://online.doha-clinic.com:9005/heartbeat/index.jsp' },
 							{ name: 'Patient Portal', url: 'https://myhealth.doha-clinic.com/Home/Profile' }
-							] }
+							] },
+					{ name: 'Al oud', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://aloud.brightqatar.com:7778/heartbeat/' }
+							] },
+					{ name: 'Al Siraj', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://asmc.gotdns.com:9000/heartbeat/' }
+							] },
+					{ name: 'Samma', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://samamedicals.dyndns.org:9000/heartbeat/' }
+							] },
+					{ name: 'Icon', url: 'http://clientb.com', children: [{ name: '9000/Live', url: 'https://online.iconmedicaldoha.com:9001/heartbeat/' },
+							{ name: 'Test/8088', url: 'https://online.iconmedicaldoha.com:8089/heartbeat/' },
+							{ name: 'Patient Portal', url: 'https://online.iconmedicaldoha.com:81/' },
+							{ name: 'Admin Portal', url: 'https://online.iconmedicaldoha.com:82/' }	
+							] }							
                 ],
                 'Location2': [
-                    { name: 'Client C', url: 'http://clientc.com', children: [{ name: 'Child 4', url: 'http://child4.com' }] },
-                    { name: 'Client D', url: 'http://clientd.com', children: [{ name: 'Child 5', url: 'http://child5.com' }] }
-                ]
-
+                    { name: 'ZHO', url: 'http://clientc.com', children: [{ name: 'zho', url: 'https://zho-mheartbeat.com/heartbeat/' }] },					
+                    { name: 'RH', url: 'http://clientd.com', children: [{ name: 'rh', url: 'http://10.10.20.8/heartbeat/index.jsp' }] },
+					{ name: 'Yugen', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.2.105:9000/heartbeat/cliniclogout.hims' }] },
+					{ name: 'Emerald', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.1.45:9000/heartbeat/' }] },
+					{ name: 'Tarabichi', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.7.10:9000/heartbeat/index.jsp' }] },
+					{ name: 'Ascent', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://10.255.254.11:9001/heartbeat/index.jsp' }] },
+					{ name: 'Lifeline', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://192.168.0.50:9001/heartbeat/' }] },
+					{ name: 'UKR', url: 'http://clientd.com', children: [{ name: 'UKR/IP', url: 'http://10.10.10.27:9001/heartbeat/index.jsp' },
+							{ name: 'UKR/CLOUD', url: 'http://ukrfmsho.ddns.net:9001/heartbeat/index.jsp' }
+							] },
+					{ name: 'Mcdermott', url: 'http://clientd.com', children: [{ name: 'Mcdermott', url: 'https://mcdcermottheartbeat.com/heartbeat/' }] },
+					{ name: 'AWC', url: 'http://clientd.com', children: [{ name: 'AWC/Cloud', url: 'http://heartbeat.americanwellness.center:9000/heartbeat/index.jsp' },
+							{ name: 'UKR/IP', url: 'http://192.168.1.250:9000/heartbeat' }
+							] },
+					{ name: 'ORIS', url: 'http://clientd.com', children: [{ name: 'Oris', url: 'http://orisdental.fortiddns.com:9000/heartbeat/' }] },
+					{ name: 'Swift', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://172.0.90.8:9001/heartbeat/' }] },	
+					{ name: 'C37', url: 'http://clientd.com', children: [{ name: '9001', url: 'https://emr.c37.ae:9001/heartbeat/' }] },
+					{ name: 'Dr.Sara', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://47.91.109.100:9001/heartbeat/' }] },
+					{ name: 'Muller', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://47.91.104.170:9001/heartbeat/' }] },
+					{ name: 'GMC', url: 'http://clientd.com', children: [{ name: 'GMC1', url: 'https://emr.c37.ae:9001/heartbeat/' },
+							{ name: 'GMC2', url: 'http://emr2/heartbeat/' }
+							] },
+					{ name: 'DLH', url: 'http://clientd.com', children: [{ name: '9000', url: 'https://dlhheartbeat.com:9000/heartbeat/index.jsp' }] },
+					{ name: 'TruDoc', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://172.23.13.4:9001/heartbeat/' }] },
+					{ name: 'Medpalm', url: 'http://clientd.com', children: [{ name: 'live', url: 'http://heartbeat.medpalm.ae/heartbeat/ '}] }
+                ],
+				 'Location3': [
+                    { name: 'Bupa', url: 'http://clienta.com', children: [{ name: 'NULL', url: '' }] }
+				],
+				'Location4': [
+                    { name: 'Saada', url: 'http://clienta.com', children: [{ name: 'NULL', url: '' }] }
+				],
+				'Location5': [
+                    { name: 'Test Links', url: 'http://clienta.com', children: [{ name: '7024', url: 'http://tanjerhome.dyndns.org:7024/heartbeat/cliniclogout.hims' },
+					{ name: '7023', url: 'http://tanjerhome.dyndns.org:7023/heartbeat/cliniclogout.hims' },
+					{ name: '7022', url: 'http://tanjerhome.dyndns.org:7022/heartbeat/cliniclogout.hims' },
+					{ name: '9011', url: 'http://heartbeatserver.dyndns.org:9011/heartbeat/branchAuthentication.hims' }
+					] }
+				]
+				
             };
             const currentLocation = document.getElementById('client-search').dataset.location;
             if (!currentLocation ||!clients[currentLocation] || query.trim() === '') {
