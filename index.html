@@ -9,10 +9,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures the body takes at least the full viewport height */
         }
 
         header {
-            background-image: url('bg_pic.png'); ; /* Gradient background */
+            background-image: url('bg_pic.png'); /* Gradient background */
             color: white;
             padding: 15px 20px;
             display: flex;
@@ -53,11 +56,11 @@
         }
 
         main {
+            flex-grow: 1; /* Allows the main content to grow and push the footer down */
             padding: 20px;
             background-image: url('login_bg.png'); /* Page background image */
             background-size: cover;
             background-attachment: fixed;
-            min-height: calc(100vh - 200px); /* Ensure background covers all except header */
         }
 
        .toggle-search {
@@ -162,6 +165,17 @@
        .client-details a:hover {
             background-color: blue;
         }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: white;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -175,9 +189,9 @@
         <div class="locations-container">
             <button class="location-button" onclick="showSearchBox(this, 'Location1')">Qatar</button>
             <button class="location-button" onclick="showSearchBox(this, 'Location2')">UAE</button>
-			<button class="location-button" onclick="showSearchBox(this, 'Location3')">Saudi</button>
+            <button class="location-button" onclick="showSearchBox(this, 'Location3')">Saudi</button>
             <button class="location-button" onclick="showSearchBox(this, 'Location4')">Oman</button>
-			<button class="location-button" onclick="showSearchBox(this, 'Location5')">Test</button>
+            <button class="location-button" onclick="showSearchBox(this, 'Location5')">Test</button>
         </div>
         <div class="search-container toggle-search" id="search-container">
             <input type="text" id="client-search" placeholder="Search for a client..." onkeyup="searchClients(this.value)">
@@ -187,6 +201,9 @@
             <!-- Client URLs and names will be displayed here -->
         </div>
     </main>
+    <footer>
+        <p>&copy; 2024 tanjerinfosystems</p>
+    </footer>
     <script>
         function openInNewTab(url) {
             window.open(url, '_blank').focus();
@@ -203,7 +220,7 @@
         }
 
         function searchClients(query) {
-            const clients = {
+		const clients = {
                 'Location1': [
                     { name: 'Kims', url: 'http://clienta.com', children: [{ name: '9000/Live', url: 'http://101.46.53.106:9000/heartbeat/index.jsp' },
 							{ name: '9005/insur', url: 'http://api.kimshealth.qa:9005/heartbeat/index.jsp' },
