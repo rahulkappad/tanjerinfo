@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanjerinfo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-image: url('bg_pic.png'); ; /* Gradient background */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 25px;
+        }
+
+       .header-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+       .header-container h1 {
+            margin: 0;
+            color: white; /* White text */
+            font-weight: bold; /* Bold text */
+            font-style: italic; /* Italic text */
+        }
+
+       .about-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            position: absolute;
+            right: 20px;
+            bottom: 15px;
+        }
+
+       .about-button:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+        }
+
+        main {
+            padding: 20px;
+            background-image: url('login_bg.png'); /* Page background image */
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: calc(100vh - 200px); /* Ensure background covers all except header */
+        }
+
+       .toggle-search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 80%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
+
+        #client-search {
+            width: 90%;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+       .locations-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+       .location-button {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+       .location-button:hover {
+            background-color: #e0e0e0;
+        }
+
+       .location-button.selected {
+            background-color: blue;
+            color: white;
+        }
+
+       .search-container {
+            display: none;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #client-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        #client-list li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        #client-list li:hover {
+            background-color: #f1f1f1;
+        }
+
+       .client-details {
+            display: none;
+            text-align: center;
+        }
+
+       .client-details.client-container {
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+       .client-details.client-container h3 {
+            margin: 0;
+            padding-bottom: 10px;
+            background: linear-gradient(to right, black, gray);
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+       .client-details a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            color: white;
+            background-color: red;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+       .client-details a:hover {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>HEARTBEAT</h1>
+            <button class="about-button" onclick="openInNewTab('https://tanjerinfosystems.com')">About</button>
+        </div>
+    </header>
+    <main>
+        <div class="locations-container">
+            <button class="location-button" onclick="showSearchBox(this, 'Location1')">Qatar</button>
+            <button class="location-button" onclick="showSearchBox(this, 'Location2')">UAE</button>
+			<button class="location-button" onclick="showSearchBox(this, 'Location3')">Saudi</button>
+            <button class="location-button" onclick="showSearchBox(this, 'Location4')">Oman</button>
+			<button class="location-button" onclick="showSearchBox(this, 'Location')">Test</button>
+        </div>
+        <div class="search-container toggle-search" id="search-container">
+            <input type="text" id="client-search" placeholder="Search for a client..." onkeyup="searchClients(this.value)">
+            <ul id="client-list"></ul>
+        </div>
+        <div class="client-details" id="client-details">
+            <!-- Client URLs and names will be displayed here -->
+        </div>
+    </main>
+    <script>
+        function openInNewTab(url) {
+            window.open(url, '_blank').focus();
+        }
+
+        function showSearchBox(button, location) {
+            document.querySelectorAll('.location-button').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+            document.getElementById('search-container').style.display = 'block';
+            document.getElementById('client-details').style.display = 'none';
+            document.getElementById('client-list').innerHTML = '';
+            document.getElementById('client-search').value = '';
+            document.getElementById('client-search').dataset.location = location;
+        }
+
+        function searchClients(query) {
+            const clients = {
+                'Location1': [
+                    { name: 'Kims', url: 'http://clienta.com', children: [{ name: '9000/Live', url: 'http://101.46.53.106:9000/heartbeat/index.jsp' },
+							{ name: '9005/insur', url: 'http://api.kimshealth.qa:9005/heartbeat/index.jsp' },
+							{ name: '9006/Report', url: 'http://101.46.52.45:9006/heartbeat/index.jsp' },	
+							{ name: '9003/Test', url: 'http://101.46.52.45:9006/heartbeat/index.jsp' }
+							] },
+					{ name: 'DCH', url: 'http://clientb.com', children: [{ name: 'Live/25', url: 'http://192.168.10.25/heartbeat/cliniclogout.hims' },
+							{ name: 'Test/28', url: 'http://192.168.10.28:8088/heartbeat' },
+							{ name: 'Test/8088', url: 'http://online.doha-clinic.com:9005/heartbeat/index.jsp' },
+							{ name: 'Patient Portal', url: 'https://myhealth.doha-clinic.com/Home/Profile' }
+							] }
+                ],
+                'Location2': [
+                    { name: 'Client C', url: 'http://clientc.com', children: [{ name: 'Child 4', url: 'http://child4.com' }] },
+                    { name: 'Client D', url: 'http://clientd.com', children: [{ name: 'Child 5', url: 'http://child5.com' }] }
+                ]
+
+            };
+            const currentLocation = document.getElementById('client-search').dataset.location;
+            if (!currentLocation ||!clients[currentLocation] || query.trim() === '') {
+                return;
+            }
+            const clientList = clients[currentLocation].filter(client =>
+                client.name.toLowerCase().includes(query.toLowerCase())
+            );
+            const clientListElement = document.getElementById('client-list');
+            clientListElement.innerHTML = '';
+            clientList.forEach(client => {
+                const li = document.createElement('li');
+                li.textContent = client.name;
+                li.onclick = () => showClientDetails(client);
+                clientListElement.appendChild(li);
+            });
+        }
+
+        function showClientDetails(client) {
+            const clientDetailsElement = document.getElementById('client-details');
+            clientDetailsElement.style.display = 'block';
+            clientDetailsElement.innerHTML = `<h2>${client.name}</h2>`;
+            const clientContainer = document.createElement('div');
+            clientContainer.className = 'client-container';
+            client.children.forEach(child => {
+                const childLink = document.createElement('a');
+                childLink.href = child.url;
+                childLink.target = '_blank';
+                childLink.textContent = child.name;
+                clientContainer.appendChild(childLink);
+            });
+            clientDetailsElement.appendChild(clientContainer);
+        }
+    </script>
+</body>
+</html>
