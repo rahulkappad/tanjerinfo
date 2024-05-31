@@ -3,328 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tanjerinfo</title>
+    <title>Login Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+       .background-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('index-page-bg.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            z-index: -1;
+        }
+
+       .login-container {
+            position: absolute;
+            top: 50%;
+            left: 70%;
+            transform: translate(-70%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: transparent;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
 
         header {
-            background-image: url('bg_pic.png');
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            height: 25px;
-        }
-
-       .header-container {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
             text-align: center;
+            font-weight:bold;
+            font-style:italic;
+            padding:8px;
+            color: red;
         }
 
-       .header-container h1 {
-            margin: 0;
-            color: white;
-            font-weight: bold;
-            font-style: italic;
-        }
-
-       .about-button {
-            background-color: transparent;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            position: absolute;
-            right: 20px;
-            bottom: 15px;
-        }
-
-       .about-button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        main {
-            flex-grow: 1;
-            padding: 20px;
-            background-image: url('login_bg.png');
-            background-size: cover;
-            background-attachment: flext;
-        }
-
-       .toggle-search {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            width: 80%;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 10px 0;
-        }
-
-        #client-search {
-            width: 90%;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            outline: none;
-        }
-
-       .locations-container {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-       .location-button {
-            background-color: white;
-            color: black;
-            border: 2px solid black;
-            border-radius: 20px;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-       .location-button:hover {
-            background-color: #e0e0e0;
-        }
-
-       .location-button.selected {
-            background-color: blue;
-            color: white;
-        }
-
-       .search-container {
-            display: none;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-       .client-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-
-       .client-list li {
+        #loginForm input[type="text"],
+        #loginForm input[type="password"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
             padding: 10px;
-            background-color: #f9f9f9;
-            border-bottom: 1px solid #ddd;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        #loginForm button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: red; /* Initial background color */
+            color: white; /* Text color */
             cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: bold; /* Make the font bold */
         }
 
-       .client-list li:hover {
-            background-color: #f1f1f1;
-        }
-
-       .client-details {
-            display: none;
-            text-align: center;
-        }
-
-       .client-details.client-container {
-            background-color: lightblue;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-
-       .client-details.client-container h3 {
-            margin: 0;
-            padding-bottom: 10px;
-            background: linear-gradient(to right, black, gray);
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-
-       .client-details a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            color: white;
-            background-color: red;
-            text-decoration: none;
-            border-radius: 10px;
-        }
-
-       .client-details a:hover {
-            background-color: blue;
+        #loginForm button:hover {
+            background-color: blue; /* Change color to blue on hover */
         }
 
         footer {
-            text-align: center;
-            padding: 10px;
-            background: #333;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #222;
             color: white;
+            text-align: center;
+            padding: 10px 0;
         }
+
         footer a {
-            color: #4CAF50;
+            color: #fff;
             text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <h1>HEARTBEAT</h1>
-            <button class="about-button" onclick="openInNewTab('https://tanjerinfosystems.com')">About</button>
-        </div>
-    </header>
-    <main>
-        <div class="locations-container">
-            <button class="location-button" onclick="showSearchBox(this, 'Location1')">Qatar</button>
-            <button class="location-button" onclick="showSearchBox(this, 'Location2')">UAE</button>
-            <button class="location-button" onclick="showSearchBox(this, 'Location3')">Saudi</button>
-            <button class="location-button" onclick="showSearchBox(this, 'Location4')">Oman</button>
-            <button class="location-button" onclick="showSearchBox(this, 'Location5')">Test</button>
-        </div>
-        <div class="search-container toggle-search" id="search-container">
-            <input type="text" id="client-search" placeholder="Search for a client..." onkeyup="searchClients(this.value)">
-            <ul id="client-list" class="client-list"></ul>
-        </div>
-        <div class="client-details" id="client-details">
-            <!-- Client URLs and names will be displayed here -->
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2022 tanjerinfosystems</p>
-    </footer>
-    <script>
-        function openInNewTab(url) {
-            window.open(url, '_blank').focus();
-        }
 
-        function showSearchBox(button, location) {
-            document.querySelectorAll('.location-button').forEach(btn => btn.classList.remove('selected'));
-            button.classList.add('selected');
-            document.getElementById('search-container').style.display = 'block';
-            document.getElementById('client-details').style.display = 'none';
-            document.getElementById('client-list').innerHTML = '';
-            document.getElementById('client-search').value = '';
-            document.getElementById('client-search').dataset.location = location;
-        }
+<div class="background-image"></div>
+<div class="login-container">
+    <header>Heartbeat</header>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+</div>
 
-        function searchClients(query) {
-        const clients = {
-                'Location1': [
-                    { name: 'Kims', url: 'http://clienta.com', children: [{ name: '9000/Live', url: 'http://101.46.53.106:9000/heartbeat/index.jsp' },
-							{ name: '9005/insur', url: 'http://api.kimshealth.qa:9005/heartbeat/index.jsp' },
-							{ name: '9006/Report', url: 'http://101.46.52.45:9006/heartbeat/index.jsp' },	
-							{ name: '9003/Test', url: 'http://101.46.52.45:9006/heartbeat/index.jsp' }
-							] },
-					{ name: 'DCH', url: 'http://clientb.com', children: [{ name: 'Live/25', url: 'http://192.168.10.25/heartbeat/cliniclogout.hims' },
-							{ name: 'Test/28', url: 'http://192.168.10.28:8088/heartbeat' },
-							{ name: 'Test/8088', url: 'http://online.doha-clinic.com:9005/heartbeat/index.jsp' },
-							{ name: 'Patient Portal', url: 'https://myhealth.doha-clinic.com/Home/Profile' }
-							] },
-					{ name: 'Al oud', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://aloud.brightqatar.com:7778/heartbeat/' }
-							] },
-					{ name: 'Al Siraj', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://asmc.gotdns.com:9000/heartbeat/' }
-							] },
-					{ name: 'Samma', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://samamedicals.dyndns.org:9000/heartbeat/' }
-							] },
-					{ name: 'Icon', url: 'http://clientb.com', children: [{ name: '9000/Live', url: 'https://online.iconmedicaldoha.com:9001/heartbeat/' },
-							{ name: 'Test/8088', url: 'https://online.iconmedicaldoha.com:8089/heartbeat/' },
-							{ name: 'Patient Portal', url: 'https://online.iconmedicaldoha.com:81/' },
-							{ name: 'Admin Portal', url: 'https://online.iconmedicaldoha.com:82/' }	
-							] }							
-                ],
-                'Location2': [
-                    { name: 'ZHO', url: 'http://clientc.com', children: [{ name: 'zho', url: 'https://zho-mheartbeat.com/heartbeat/' }] },					
-                    { name: 'RH', url: 'http://clientd.com', children: [{ name: 'rh', url: 'http://10.10.20.8/heartbeat/index.jsp' }] },
-					{ name: 'Yugen', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.2.105:9000/heartbeat/cliniclogout.hims' }] },
-					{ name: 'Emerald', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.1.45:9000/heartbeat/' }] },
-					{ name: 'Tarabichi', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.7.10:9000/heartbeat/index.jsp' }] },
-					{ name: 'Ascent', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://10.255.254.11:9001/heartbeat/index.jsp' }] },
-					{ name: 'Lifeline', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://192.168.0.50:9001/heartbeat/' }] },
-					{ name: 'UKR', url: 'http://clientd.com', children: [{ name: 'UKR/IP', url: 'http://10.10.10.27:9001/heartbeat/index.jsp' },
-							{ name: 'UKR/CLOUD', url: 'http://ukrfmsho.ddns.net:9001/heartbeat/index.jsp' }
-							] },
-					{ name: 'Mcdermott', url: 'http://clientd.com', children: [{ name: 'Mcdermott', url: 'https://mcdcermottheartbeat.com/heartbeat/' }] },
-					{ name: 'AWC', url: 'http://clientd.com', children: [{ name: 'AWC/Cloud', url: 'http://heartbeat.americanwellness.center:9000/heartbeat/index.jsp' },
-							{ name: 'UKR/IP', url: 'http://192.168.1.250:9000/heartbeat' }
-							] },
-					{ name: 'ORIS', url: 'http://clientd.com', children: [{ name: 'Oris', url: 'http://orisdental.fortiddns.com:9000/heartbeat/' }] },
-					{ name: 'Swift', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://172.0.90.8:9001/heartbeat/' }] },	
-					{ name: 'C37', url: 'http://clientd.com', children: [{ name: '9001', url: 'https://emr.c37.ae:9001/heartbeat/' }] },
-					{ name: 'Dr.Sara', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://47.91.109.100:9001/heartbeat/' }] },
-					{ name: 'Muller', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://47.91.104.170:9001/heartbeat/' }] },
-					{ name: 'GMC', url: 'http://clientd.com', children: [{ name: 'GMC1', url: 'https://emr.c37.ae:9001/heartbeat/' },
-							{ name: 'GMC2', url: 'http://emr2/heartbeat/' }
-							] },
-					{ name: 'DLH', url: 'http://clientd.com', children: [{ name: '9000', url: 'https://dlhheartbeat.com:9000/heartbeat/index.jsp' }] },
-					{ name: 'TruDoc', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://172.23.13.4:9001/heartbeat/' }] },
-					{ name: 'Medpalm', url: 'http://clientd.com', children: [{ name: 'live', url: 'http://heartbeat.medpalm.ae/heartbeat/ '}] }
-                ],
-				 'Location3': [
-                    { name: 'Bupa', url: 'http://clienta.com', children: [{ name: 'NULL', url: '' }] }
-				],
-				'Location4': [
-                    { name: 'Saada', url: 'http://clienta.com', children: [{ name: 'NULL', url: '' }] }
-				],
-				'Location5': [
-                    { name: 'Test Links', url: 'http://clienta.com', children: [{ name: '7024', url: 'http://tanjerhome.dyndns.org:7024/heartbeat/cliniclogout.hims' },
-					{ name: '7023', url: 'http://tanjerhome.dyndns.org:7023/heartbeat/cliniclogout.hims' },
-					{ name: '7022', url: 'http://tanjerhome.dyndns.org:7022/heartbeat/cliniclogout.hims' },
-					{ name: '9011', url: 'http://heartbeatserver.dyndns.org:9011/heartbeat/branchAuthentication.hims' }
-					] }
-				]
-				
-            };
-            const currentLocation = document.getElementById('client-search').dataset.location;
-            if (!currentLocation ||!clients[currentLocation] || query.trim() === '') {
-                return;
-            }
-            const clientList = clients[currentLocation].filter(client =>
-                client.name.toLowerCase().includes(query.toLowerCase())
-            );
-            const clientListElement = document.getElementById('client-list');
-            clientListElement.innerHTML = '';
-            clientList.forEach(client => {
-                const li = document.createElement('li');
-                li.textContent = client.name;
-                li.onclick = () => showClientDetails(client);
-                clientListElement.appendChild(li);
-            });
-        }
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-        function showClientDetails(client) {
-            const clientDetailsElement = document.getElementById('client-details');
-            clientDetailsElement.style.display = 'block';
-            clientDetailsElement.innerHTML = `<h2>${client.name}</h2>`;
-            const clientContainer = document.createElement('div');
-            clientContainer.className = 'client-container';
-            client.children.forEach(child => {
-                const childLink = document.createElement('a');
-                childLink.href = child.url;
-                childLink.target = '_blank';
-                childLink.textContent = child.name;
-                clientContainer.appendChild(childLink);
-            });
-            clientDetailsElement.appendChild(clientContainer);
-        }
-    </script>
+    if (username === "admin" && password === "2030") {
+        window.location.href = "clients.html";
+    } else {
+        alert("Invalid username/password");
+    }
+});
+</script>
+
+<footer>
+    <p>&copy; 2022 tanjerinfosystems</p>
+    <a href="https://tanjerinfosystems.com" style="background-color: transparent; border: none;">About</a>
+</footer>
+
 </body>
 </html>
