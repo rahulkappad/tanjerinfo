@@ -103,7 +103,6 @@
 // Define an object with multiple usernames and their passwords
 var users = {
     "admin": "2030",
-    "Admin": "2030",
     "ullas": "ullas2030",
     "shefeek": "shefeek2030",
     "bala": "bala2030",
@@ -115,30 +114,29 @@ var users = {
     "shashini": "shashini2030",
     "resmi": "resmi2030"
 };
-
 function validate() {
-    var username = document.getElementById("username").value;
+    var username = document.getElementById("username").value.toLowerCase();
     var password = document.getElementById("password").value;
 
-    // Check if the entered username exists in the users object
+    // Convert the entered username to lowercase for case-insensitive comparison
     if (users[username]!== undefined) {
         // If the username exists, check if the password matches
         if (users[username] === password) {
             window.location = "clients.html";
-            return false;
+            return false; // Prevent form submission
         } else {
             alert("Incorrect password");
-            return false;
+            return false; // Prevent form submission
         }
     } else {
         alert("Unknown username");
-        return false;
+        return false; // Prevent form submission
     }
 }
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    validate();
+    event.preventDefault(); // Prevent default form submission
+    validate(); // Validate the input
 });
 </script>
 
