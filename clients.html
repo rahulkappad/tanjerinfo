@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="logo-small.png">
-    <title>heartbeat</title>
+    <link rel="shortcut icon" href="logo-small.png">
+    <title>Tanjerinfo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,6 +34,7 @@
         }
 
        .header-container h1 {
+            display:flex;
             margin: 0;
             color: white;
             font-weight: bold;
@@ -42,6 +43,7 @@
 
        .about-button {
             background-color: transparent;
+            display:flex;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -55,27 +57,47 @@
        .about-button:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
-		.logout-button {
-			background-color: transparent;
-			color: white;
-			border: none;
-			padding: 10px 20px;
-			cursor: pointer;
-			font-size: 16px;
-			position: absolute;
-			right: 10px; /* Adjust this value based on your layout */
-			top: 13px; /* Adjust this value based on your layout */
-		}
 
-		.logout-button:hover {
-			background-color: rgba(255, 255, 255, 0.1);
-		}
+       .logout-button {
+            background-color: transparent;
+            display:flex;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            position: absolute;
+            right: 10px;
+            top: 13px;
+        }
+
+       .logout-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         main {
             flex-grow: 1;
             padding: 20px;
             background-image: url('login_bg.png');
             background-size: cover;
             background-attachment: flext;
+        }
+
+       .all-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50%;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+       .all-button:hover {
+            background-color: blue;
         }
 
        .toggle-search {
@@ -202,12 +224,13 @@
 </head>
 <body>
     <header>
-    <div class="header-container">
-        <h1>HEARTBEAT</h1>
-        <button class="about-button" onclick="openInNewTab('https://tanjerinfosystems.com')">About</button>
-        <button class="logout-button" onclick="window.location.href='index';">Logout</button>
-    </div>
-	</header>
+        <div class="header-container">
+            <h1>HEARTBEAT</h1>
+            <button class="about-button" onclick="openInNewTab('https://tanjerinfosystems.com')">About</button>
+            <button class="logout-button" onclick="window.location.href='index.html';">Logout</button>
+            <button class="all-button" onclick="window.location.href='all.html';">All</button>
+        </div>
+    </header>
     <main>
         <div class="locations-container">
             <button class="location-button" onclick="showSearchBox(this, 'Location1')">Qatar</button>
@@ -243,6 +266,7 @@
         }
 
         function searchClients(query) {
+            // Your existing searchClients function implementation
         const clients = {
                 'Location1': [
                     { name: 'Kims', url: 'http://clienta.com', children: [{ name: '9000/Live', url: 'http://101.46.53.106:9000/heartbeat/index.jsp' },
