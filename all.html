@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logo-small.png">
+    <title>ALL-Clients</title>
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-image: url('bg_pic.png');
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center; /* Align items horizontally */
+            align-items: center;
+            position: relative;
+            height: 25px; /* Adjusted for visibility */
+        }
+
+      .header-container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+      .header-container h1 {
+            margin: 0;
+            color: white;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: white;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+      .logout-button,
+      .about-button {
+            background-color: transparent;
+            display: flex;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+			position: absolute;
+            right: 10px;
+            top: 13px;
+        }
+
+      .logout-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+      }
+		.about-button {
+            background-color: transparent;
+            display:flex;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            position: absolute;
+            right: 100px;
+            bottom: 3px;
+        }
+
+       .about-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+		.back-button {
+            background-color: transparent;
+            display:flex;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            position: absolute;
+            right: 190px;
+            bottom: 3px;
+        }
+
+       .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+		.all-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+     .all-button {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+     .all-button:hover {
+            background-color: #e0e0e0;
+        }
+
+     .all-button.selected {
+            background-color: blue;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: white;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>HEARTBEAT</h1>
+            <div>
+                <button class="logout-button" onclick="window.location.href='index.html';">Logout</button>
+                <button class="about-button" onclick="openInNewTab('https://tanjerinfosystems.com')"> About</button>
+				<button class="back-button" onclick="window.location.href='clients.html';">Back</button>
+			</div>
+        </div>
+    </header>
+    <main id="content-container">    
+        <button class="all-button" onclick="displayAllClients()">All Clients</button>
+        <table id="clientsTable">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Clients</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2022 tanjerinfosystems</p>
+    </footer>
+    <script>
+        let showList = false;
+
+        function displayAllClients() {
+            showList =showList;
+
+            const tableBody = document.getElementById('clientsTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
+
+            const clientsData = {
+                'Qatar': [
+                    { groupName: 'Kims', children: [{ name: '9000/Live', url: 'http://101.46.53.106:9000/heartbeat/index.jsp' },
+							{ name: '9005/insur', url: 'http://api.kimshealth.qa:9005/heartbeat/index.jsp' },
+							{ name: '9006/Report', url: 'http://101.46.52.45:9006/heartbeat/index.jsp' },	
+							{ name: '9003/Test', url: 'http://101.46.52.45:9006/heartbeat/index.jsp' }
+							] },
+					{ groupName: 'DCH', url: 'http://clientb.com', children: [{ name: 'Live/25', url: 'http://192.168.10.25/heartbeat/cliniclogout.hims' },
+							{ name: 'Test/28', url: 'http://192.168.10.28:8088/heartbeat' },
+							{ name: 'Test/8088', url: 'http://online.doha-clinic.com:9005/heartbeat/index.jsp' },
+							{ name: 'Patient Portal', url: 'https://myhealth.doha-clinic.com/Home/Profile' }
+							] },
+					{ groupName: 'Al oud', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://aloud.brightqatar.com:7778/heartbeat/' }
+							] },
+					{ groupName: 'Al Siraj', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://asmc.gotdns.com:9000/heartbeat/' }
+							] },
+					{ groupName: 'Samma', url: 'http://clientb.com', children: [{ name: 'Live', url: 'http://samamedicals.dyndns.org:9000/heartbeat/' }
+							] },
+					{ groupName:'Icon', url: 'http://clientb.com', children: [{ name: '9000/Live', url: 'https://online.iconmedicaldoha.com:9001/heartbeat/' },
+							{ name: 'Test/8088', url: 'https://online.iconmedicaldoha.com:8089/heartbeat/' },
+							{ name: 'Patient Portal', url: 'https://online.iconmedicaldoha.com:81/' },
+							{ name: 'Admin Portal', url: 'https://online.iconmedicaldoha.com:82/' }	
+							] }							
+                ],
+                'UAE': [
+                    { groupName: 'ZHO', url: 'http://clientc.com', children: [{ name: 'zho', url: 'https://zho-mheartbeat.com/heartbeat/' }] },					
+                    { groupName: 'RH', url: 'http://clientd.com', children: [{ name: 'rh', url: 'http://10.10.20.8/heartbeat/index.jsp' }] },
+					{ groupName: 'Yugen', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.2.105:9000/heartbeat/cliniclogout.hims' }] },
+					{ groupName: 'Emerald', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.1.45:9000/heartbeat/' }] },
+					{ groupName: 'Tarabichi', url: 'http://clientd.com', children: [{ name: '9000', url: 'http://192.168.7.10:9000/heartbeat/index.jsp' }] },
+					{ groupName: 'Ascent', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://10.255.254.11:9001/heartbeat/index.jsp' }] },
+					{ groupName: 'Lifeline', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://192.168.0.50:9001/heartbeat/' }] },
+					{ groupName: 'UKR', url: 'http://clientd.com', children: [{ name: 'UKR/IP', url: 'http://10.10.10.27:9001/heartbeat/index.jsp' },
+							{ name: 'UKR/CLOUD', url: 'http://ukrfmsho.ddns.net:9001/heartbeat/index.jsp' }
+							] },
+					{ groupName: 'Mcdermott', url: 'http://clientd.com', children: [{ name: 'Mcdermott', url: 'https://mcdcermottheartbeat.com/heartbeat/' }] },
+					{ groupName: 'AWC', url: 'http://clientd.com', children: [{ name: 'AWC/Cloud', url: 'http://heartbeat.americanwellness.center:9000/heartbeat/index.jsp' },
+							{ name: 'UKR/IP', url: 'http://192.168.1.250:9000/heartbeat' }
+							] },
+					{ groupName: 'ORIS', url: 'http://clientd.com', children: [{ name: 'Oris', url: 'http://orisdental.fortiddns.com:9000/heartbeat/' }] },
+					{ groupName: 'Swift', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://172.0.90.8:9001/heartbeat/' }] },	
+					{ groupName: 'C37', url: 'http://clientd.com', children: [{ name: '9001', url: 'https://emr.c37.ae:9001/heartbeat/' }] },
+					{ groupName: 'Dr.Sara', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://47.91.109.100:9001/heartbeat/' }] },
+					{ groupName: 'Muller', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://47.91.104.170:9001/heartbeat/' }] },
+					{ groupName: 'GMC', url: 'http://clientd.com', children: [{ name: 'GMC1', url: 'https://emr.c37.ae:9001/heartbeat/' },
+							{ name: 'GMC2', url: 'http://emr2/heartbeat/' }
+							] },
+					{ groupName: 'DLH', url: 'http://clientd.com', children: [{ name: '9000', url: 'https://dlhheartbeat.com:9000/heartbeat/index.jsp' }] },
+					{ groupName: 'TruDoc', url: 'http://clientd.com', children: [{ name: '9001', url: 'http://172.23.13.4:9001/heartbeat/' }] },
+					{ groupName: 'Medpalm', url: 'http://clientd.com', children: [{ name: 'live', url: 'http://heartbeat.medpalm.ae/heartbeat/ '}] }
+                ],
+				 'Saudi': [
+                    { groupName: 'Bupa', url: 'http://clienta.com', children: [{ name: 'NULL', url: '' }] }
+				],
+				'Oman': [
+                    { groupName: 'Saada', url: 'http://clienta.com', children: [{ name: 'NULL', url: '' }] }
+				],
+				'Test Links': [
+                    { groupName: 'Test Links', url: 'http://clienta.com', children: [{ name: '7024', url: 'http://tanjerhome.dyndns.org:7024/heartbeat/cliniclogout.hims' },
+					{ groupName: '7023', url: 'http://tanjerhome.dyndns.org:7023/heartbeat/cliniclogout.hims' },
+					{ groupName: '7022', url: 'http://tanjerhome.dyndns.org:7022/heartbeat/cliniclogout.hims' },
+					{ groupName: '9011', url: 'http://heartbeatserver.dyndns.org:9011/heartbeat/branchAuthentication.hims' }
+					] }
+				]
+				
+            };
+
+            Object.entries(clientsData).forEach(([location, groups]) => {
+                let row = `<tr><td>${location}</td><td></td><td></td></tr>`;
+                groups.forEach(group => {
+                    let countText = '';
+                    if (showList) {
+                        countText = `(${group.children.length})`;
+                    }
+                    row += `<tr><td></td><td>${group.groupName}${countText}</td><td></td></tr>`;
+                    group.children.forEach(child => {
+                        row += `<tr><td></td><td></td><td>${child.name} - <a href="${child.url}" target="_blank">${child.url}</a></td></tr>`;
+                    });
+                });
+                tableBody.insertAdjacentHTML('beforeend', row);
+            });
+
+            const allButton = document.querySelector('.all-button');
+            if (showList) {
+                allButton.textContent = 'Hide All';
+            } else {
+                allButton.textContent = 'All Clients';
+            }
+        }
+
+        function openInNewTab(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
